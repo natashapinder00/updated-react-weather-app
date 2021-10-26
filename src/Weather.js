@@ -5,19 +5,23 @@ import "./Weather.css";
 
 export default function Weather() { 
     const [ready, setReady] = useState(false);
-    const [weatherData, setWeatherData] = useState({});
+    const [weatherData, setWeatherData] = useState({ ready: false});
     function handleResponse(response) {
         console.log(response.data);
         setWeatherData({  
+        ready: true,
         temperature: response.data.main.temp,
-        wind: 12,
+        date: "Tuesday 19:00",
+        humidity: response.data.main.humidity,
+        description: response.data.weather[0].description,
+        iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
+        wind: response.data.wind.speed,
         city: response.data.name
     });
 
-setReady(true);
 
     }
-if (ready) {
+if (weatherData.ready) {
 return (
     <div className="Weather">
          <form>
@@ -39,15 +43,16 @@ return (
 
         <h1>{weatherData.city}</h1>
         <ul>
-            <li>Thursday 16:00</li>
+            <li className="text-capitalize">
+                Thursday 16:00 </li>
             <li>{weatherData.description}</li>
             </ul>
             
         <div className="row mt-3">
             <div className="col-6">
                  <div className="clearfix">
-                <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
-                alt="Mostly Cloudy"
+                <img src={weatherData.iconUrl}
+                alt={weatherData.description}
                 className="float-left"/>
             
                 
@@ -57,11 +62,12 @@ return (
                 </div>
             </div>
             <div className="col-6">
+
                 <ul>
-                     <li> Preciptiation: 70%</li>
-                     <li> Humidity: 20% </li>
+                     <li> Humidity: {weatherData.humidity}% </li>
                      <li> Wind: {weatherData.wind} km/h% </li>
                 </ul>
+
             </div>
         </div>
     
