@@ -11,12 +11,11 @@ export default function Weather() {
         setWeatherData({  
         temperature: response.data.main.temp,
         wind: 12,
-    city: response.data.name
+        city: response.data.name
     });
 
-
-
 setReady(true);
+
     }
 if (ready) {
 return (
@@ -59,15 +58,9 @@ return (
             </div>
             <div className="col-6">
                 <ul>
-                    <li>
-                        Preciptiation: 70%
-                    </li>
-                     <li>
-                        Humidity: 20%
-                    </li>
-                     <li>
-                        Wind: {weatherData.wind} km/h%
-                    </li>
+                     <li> Preciptiation: 70%</li>
+                     <li> Humidity: 20% </li>
+                     <li> Wind: {weatherData.wind} km/h% </li>
                 </ul>
             </div>
         </div>
