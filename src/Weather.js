@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate";
 import axios from "axios";
 import "./Weather.css";
 
@@ -11,12 +12,12 @@ export default function Weather(props) {
         setWeatherData({  
         ready: true,
         temperature: response.data.main.temp,
-        date: "Tuesday 19:00",
         humidity: response.data.main.humidity,
+        date: new Date(response.data.dt * 1000),
         description: response.data.weather[0].description,
         iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
         wind: response.data.wind.speed,
-        city: response.data.name
+        city: response.data.name 
     });
 }
 
@@ -43,9 +44,10 @@ return (
 
         <h1>{weatherData.city}</h1>
         <ul>
-            <li className="text-capitalize">
-                Thursday 16:00 </li>
-            <li>{weatherData.description}</li>
+            <li>
+                <FormattedDate date={weatherData.date} />
+                </li>
+            <li className="text-capitalize">{weatherData.description}</li>
             </ul>
             
         <div className="row mt-3">
