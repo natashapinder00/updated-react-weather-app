@@ -7,6 +7,7 @@ import "./Weather.css";
 export default function Weather(props) { 
     const [weatherData, setWeatherData] = useState({ ready: false});
     const [city, setCity] = useState(props.defaultCity);
+    
     function handleResponse(response) {
         console.log(response.data);
         setWeatherData({  
@@ -24,7 +25,7 @@ export default function Weather(props) {
 
 function handleSubmit(event) {
 event.preventDefault();
-alert(city);
+alert();
  }
 
 
@@ -61,6 +62,7 @@ return (
         </div>
         </form>
         <WeatherInfo data={weatherData} />
+    
     </div>
     );
     
